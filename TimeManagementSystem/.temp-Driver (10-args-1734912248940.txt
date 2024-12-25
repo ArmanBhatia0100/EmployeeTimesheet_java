@@ -1,0 +1,7 @@
+-Dfile.encoding=UTF-8
+-Dstdout.encoding=UTF-8
+-Dstderr.encoding=UTF-8
+-classpath
+"D:\\Eclipse_workspace\\TimeManagementSystem\\bin"
+Driver
+1
