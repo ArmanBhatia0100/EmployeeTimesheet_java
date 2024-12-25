@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class UserManagement
 {
+    static Scanner scanner = new Scanner(System.in);
     private static int empID = 0;
     public static ArrayList<Employee> employees = new ArrayList<Employee>();
 
@@ -14,7 +15,7 @@ public class UserManagement
 	boolean authenticated = false;
 
 	// Try-with-resources ensures the scanner is closed automatically
-	Scanner scanner = new Scanner(System.in);
+
 	System.out.print("Enter admin username: ");
 	String username = scanner.next();
 
@@ -76,27 +77,32 @@ public class UserManagement
     public String getEmployeeInfoFromConsole()
     {
 
-	Scanner scanner = new Scanner(System.in);
+	String firstName;
+	String lastName;
+	String fullName;
+	String position = "";
+	String address;
+	String empID;
+	int age;
+	int PIN;
 
 	System.out.print("Enter firstname: ");
-	String firstName = scanner.next();
+	firstName = scanner.next();
 
 	System.out.print("Enter lastname: ");
-	String lastname = scanner.next();
-	String name = firstName + lastname;
+	lastName = scanner.next();
+
+	fullName = firstName + lastName;
 
 	System.out.print("Enter Age: ");
-	int age = scanner.nextInt();
+	age = scanner.nextInt();
 	scanner.nextLine();
 
 	System.out.print("Enter Address: ");
-	String address = scanner.nextLine();
+	address = scanner.nextLine();
 
-	System.out.println("What is the position:");
-	System.out.println("1. Worker \n" + "2. Supervisor \n" + "3. Manager");
-	System.out.print("Choice: ");
-
-	String position = "";
+	System.out
+		.println("What is the position: \n 1. Worker \\n\" + \"2. Supervisor \\n\" + \"3. Manager \n Choice: ");
 
 	switch (scanner.nextInt()) {
 
@@ -109,12 +115,85 @@ public class UserManagement
 
 	scanner.nextLine();
 
-	String empID = UserManagement.generateEmpId(position);
+	empID = UserManagement.generateEmpId(position);
 
-	System.out.println("Enter your PIN");
-	int PIN = scanner.nextInt();
+	System.out.print("Enter your PIN: ");
+	PIN = scanner.nextInt();
 
 	return position;
+
+    }
+
+    public static void workerMenuSelection(Employee employee)
+    {
+
+	Worker worker = (Worker) employee;
+
+	boolean isExit = false;
+
+	while (!isExit)
+	{
+
+	    System.out.println("1. Clock In");
+	    System.out.println("2. Clock Out");
+	    System.out.println("3. Break In");
+	    System.out.println("4. Break Out");
+	    System.out.println("5. Show timesheet");
+	    System.out.println("6. Exit");
+	    System.out.print("Choice: ");
+	    int userSelection = scanner.nextInt();
+	    System.out.println("----------------");
+
+	    switch (userSelection) {
+
+	    case 1: {
+
+		worker.ClockIn();
+		break;
+
+	    }
+
+	    case 2: {
+
+		worker.clockOut();
+		break;
+
+	    }
+
+	    case 3: {
+
+		worker.breakIn();
+		break;
+
+	    }
+
+	    case 4: {
+
+		worker.breakOut();
+		break;
+
+	    }
+
+	    case 5: {
+
+		worker.getTimesheet();
+		break;
+
+	    }
+
+	    case 6: {
+
+		isExit = true;
+		break;
+
+	    }
+
+	    default:
+		throw new IllegalArgumentException("Unexpected value: " + userSelection);
+
+	    }
+
+	}
 
     }
 

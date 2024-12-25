@@ -111,5 +111,15 @@ public class Employee
 
     }
 
+    /**
+     * @return the pIN
+     */
+    public int getPIN()
+    {
+
+	return PIN;
+
+    }
+
 
 }

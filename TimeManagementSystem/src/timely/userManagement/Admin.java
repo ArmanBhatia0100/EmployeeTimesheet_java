@@ -46,7 +46,7 @@ public class Admin
 
 	String empID = UserManagement.generateEmpId(position);
 
-	System.out.println("Enter your PIN");
+	System.out.print("Enter your PIN: ");
 	int PIN = scanner.nextInt();
 
 	if (position.equals("Manager"))

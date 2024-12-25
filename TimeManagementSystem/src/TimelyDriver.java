@@ -9,6 +9,10 @@ public class TimelyDriver
 {
     public static Scanner scanner = new Scanner(System.in);
 
+    /*
+     * This function will print the main menu and check if the user is an admin or a
+     * employee
+     */
     public static void main(String[] args)
     {
 
@@ -127,33 +131,50 @@ public class TimelyDriver
 	if (UserManagement.employees.size() > 0)
 	{
 
+	    String employeeID;
+	    int PIN;
+
 	    System.out.println(
 		    "Good Morning! " + Character.toString(usertype.charAt(0)).toUpperCase() + usertype.substring(1));
 
-	    System.out.print("What is your employeeID: ");
-	    String employeeID = scanner.next();
+	    System.out.print("Enter your employeeID: ");
+	    employeeID = scanner.next();
+
+	    System.out.print("Enter your PIN: ");
+	    PIN = scanner.nextInt();
+	    System.out.println("--------------------");
 
 	    Employee employee = null;
 
 	    for (Employee emp : UserManagement.employees)
 	    {
 
-		if (emp.empID.equals(employeeID))
+		if (emp.getEmpID().equals(employeeID) & emp.getPIN() == PIN)
 		{
 
 		    employee = emp;
+		    break;
+
+		}
+
+		if (emp.getEmpID().equals(employeeID) & emp.getPIN() != PIN)
+		{
+
+		    System.out.println("Authentication failed");
 
 		}
 
 	    }
 
-	    if (employee != null && employee.empID.startsWith("M"))
+	    if (employee != null && employee.getEmpID().startsWith("M"))
 	    {
 
 		printManagerMenu(employee);
 
-	    } else if (employee != null && employee.empID.startsWith("E"))
+	    } else if (employee != null && employee.getEmpID().startsWith("E"))
 	    {
+
+		printWorkerMenu(employee);
 
 	    } else
 	    {
@@ -277,6 +298,13 @@ public class TimelyDriver
 	System.out.println("---------------------");
 
 	return userType;
+
+    }
+
+    private static void printWorkerMenu(Employee employee)
+    {
+
+	UserManagement.workerMenuSelection(employee);
 
     }
 
