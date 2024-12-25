@@ -66,29 +66,6 @@ public class UserManagement
 
     }
 
-    public static boolean removeEmployee(int empID)
-    {
-
-	boolean isEmpRemoved = false;
-
-	for (int i = 0; i < employees.size(); i++)
-	{
-
-//	    if (employees.get(i).getEmpID() == empID)
-//	    {
-//
-//		employees.remove(i);
-//		System.out.println("Employee Removed");
-//		break;
-//
-//	    }
-
-	}
-
-	return isEmpRemoved;
-
-    }
-
     public static void setEmployees(Employee E)
     {
 

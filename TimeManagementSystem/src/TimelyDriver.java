@@ -31,8 +31,6 @@ public class TimelyDriver
 
 	}
 
-	scanner.close();
-
     }
 
     public static void printMainMenu()
@@ -58,7 +56,6 @@ public class TimelyDriver
 
 	    Admin admin = new Admin();
 	    boolean isExit = false;
-	    int adminSelection = scanner.nextInt();
 
 	    while (!isExit)
 	    {
@@ -71,6 +68,7 @@ public class TimelyDriver
 		System.out.println("5. Exit");
 		System.out.println();
 		System.out.print("Enter your choice: ");
+		int adminSelection = scanner.nextInt();
 
 		switch (adminSelection) {
 
@@ -84,8 +82,7 @@ public class TimelyDriver
 		case 2 ->
 		    {
 
-			System.out.print(UserManagement.getEmployees());
-			System.out.print("Enter the EmpId to remove the user:");
+			admin.removeEmployee();
 
 		    }
 		case 3 ->
@@ -170,7 +167,8 @@ public class TimelyDriver
 	} else
 	{
 
-	    System.out.println("Sorry no employee in the system, ADD employees");
+	    System.out.println("Sorry no employee in the system. Try again");
+	    main(null);
 
 	}
 

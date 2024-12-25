@@ -67,10 +67,26 @@ public class Admin
 
     }
 
-    private void removeEmployee(int empID)
+    public void removeEmployee()
     {
 
-	UserManagement.removeEmployee(empID);
+	Scanner scanner = new Scanner(System.in);
+	System.out.print("Enter the EmpId to remove the user:");
+	String empId = scanner.next();
+
+	for (Employee emp : UserManagement.getEmployees())
+	{
+
+	    if (emp.getEmpID().equals(empId))
+	    {
+
+		UserManagement.employees.remove(emp);
+		System.out.println(emp.getName() + " " + emp.getEmpID() + " is removed");
+		break;
+
+	    }
+
+	}
 
     }
 
